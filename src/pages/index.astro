@@ -1,0 +1,54 @@
+---
+import type { Post } from '../types';
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const posts = await Astro.glob<Post>('./posts/*.md');
+const sortedPosts = posts.toSorted(
+    (p1, p2) => +new Date(p1.frontmatter.pubDate) - +new Date(p2.frontmatter.pubDate)
+);
+---
+
+<Layout frontmatter={{ title: 'Welcome to your mom.' }}>
+    <main>
+        <ul role="list" class="link-card-grid">
+            {
+                sortedPosts.map((post) => (
+                    <Card
+                        href={post.url ?? '#'}
+                        title={post.frontmatter.title}
+                        body={`Read more about ${post.frontmatter.title}`}
+                        color="red"
+                    />
+                ))
+            }
+        </ul>
+    </main>
+</Layout>
+
+<style>
+    .instructions {
+        margin-bottom: 2rem;
+        border: 1px solid rgba(var(--accent-light), 25%);
+        background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+    .instructions code {
+        font-size: 0.8em;
+        font-weight: bold;
+        background: rgba(var(--accent-light), 12%);
+        color: rgb(var(--accent-light));
+        border-radius: 4px;
+        padding: 0.3em 0.4em;
+    }
+    .instructions strong {
+        color: rgb(var(--accent-light));
+    }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 2rem;
+        padding: 0;
+    }
+</style>

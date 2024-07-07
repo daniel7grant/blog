@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import '../styles/sidenote.css';
+import { format } from 'date-fns/fp';
+import { blogTitle, categories, type Category } from '../types';
+
+interface Props {
+    frontmatter: {
+        title: string;
+        pubDate?: string;
+        category?: string;
+    };
+}
+
+const { title, pubDate, category: categorySlug } = Astro.props.frontmatter;
+const renderedDate = pubDate ? format('yyyy-MM-dd', new Date(pubDate)) : undefined;
+const category = categorySlug ? categories[categorySlug as Category] : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title} - {blogTitle}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <header>
+            <a href="/" class="header">grant's blog</a>
+            <nav>
+                {
+                    Object.entries(categories).map(([name, category]) => (
+                        <a
+                            href={`/${name}`}
+                            style={{
+                                '--category-dark-color': category.color.dark,
+                                '--category-light-color': category.color.light,
+                            }}
+                        >
+                            {category.name}
+                        </a>
+                    ))
+                }
+            </nav>
+        </header>
+        <main
+            style={{
+                '--category-dark-color': category?.color.dark,
+                '--category-light-color': category?.color.light,
+            }}
+        >
+            <div class="title">
+                <h1>{title}</h1>
+                <div>
+                    {renderedDate && `Published on ${renderedDate}`}
+                    {
+                        category && (
+                            <a href={`/${categorySlug}`} class="badge">
+                                <small>{category.name}</small>
+                            </a>
+                        )
+                    }
+                </div>
+            </div>
+            <article>
+                <slot />
+            </article>
+        </main>
+
+        <script>
+            import '../styles/sidenote';
+        </script>
+    </body>
+</html>
