@@ -49,9 +49,10 @@ For example a quote that seems kinda important:
 
 For example say I want to have a checklist:
 
--   Write a blogpost
--   Add sidenotes
--   Deploy it to somewhere [^deploy]
+- [x] Write a blogpost
+- [x] Add sidenotes
+- [x] Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet 
+- [ ] Deploy it to somewhere [^deploy]
 
 [^deploy]: You can deploy Astro to Netlify, Vercel or any place where you can deploy HTML files.
 

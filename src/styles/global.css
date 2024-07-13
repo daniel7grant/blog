@@ -78,7 +78,7 @@ a.badge,
 a.badge:visited {
     background-color: rgba(var(--category-dark-color), 1);
     border-radius: 1rem;
-    color: var(--fg-dark-color);
+    color: var(--bg-dark-color);
     padding: 0 0.5rem;
 }
 
@@ -209,4 +209,59 @@ pre {
 
 code {
     font-family: var(--mono-font);
+}
+
+ul.contains-task-list {
+    list-style: none;
+    padding-left: 2rem;
+}
+
+ul.contains-task-list > li.task-list-item {
+    position: relative;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* font: inherit;
+    color: rgba(var(--category-dark-color), 0.6);
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid rgba(var(--category-dark-color), 0.6);
+    border-radius: 0.15em;
+    transform: translateY(-0.075em); */
+}
+
+ul.contains-task-list > li.task-list-item > input[type="checkbox"]::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: -2rem;
+    top: 0rem;
+    border: 2px solid rgba(var(--category-dark-color), 0.6);
+    border-radius: 2px;
+    width: 0.8rem;
+    height: 0.8rem;
+}
+
+ul.contains-task-list > li.task-list-item > input[type="checkbox"]:checked:before {
+    border: 2px solid rgba(var(--category-dark-color), 1);
+    background-color: rgba(var(--category-dark-color), 1);
+}
+
+ul.contains-task-list > li.task-list-item > input[type="checkbox"]:checked::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: -1.8rem;
+    top: 0.3rem;
+    border-left: 2px solid var(--bg-dark-color);
+    border-bottom: 2px solid var(--bg-dark-color);
+    width: 0.6rem;
+    height: 0.2rem;
+    transform: rotate(-45deg);
 }
