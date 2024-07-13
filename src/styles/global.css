@@ -22,8 +22,8 @@ html {
 
 @media (prefers-color-scheme: light) {
     html {
-        background: var(--fg-dark-color);
-        color: var(--bg-dark-color);
+        background: var(--bg-light-color);
+        color: var(--fg-light-color);
     }
 }
 
@@ -35,6 +35,12 @@ header {
     width: 1000px;
     padding: 1rem;
     max-width: calc(100% - 2rem);
+}
+
+@media print {
+    header {
+        display: none;
+    }
 }
 
 .header {
@@ -89,6 +95,14 @@ a.badge:visited {
     }
 }
 
+@media print {
+    a.badge {
+        color: var(--fg-light-color);
+        background-color: var(--bg-light-color);
+        border: 1px solid rgba(var(--category-light-color), 1);
+    }
+}
+
 h1,
 h2,
 h3,
@@ -109,6 +123,12 @@ h6 {
     opacity: 30%;
     text-decoration: none;
     border-bottom: none;
+}
+
+@media print {
+    :is(h1, h2, h3, h4, h5, h6) a {
+        display: none;
+    }
 }
 
 :is(h1, h2, h3, h4, h5, h6) a:hover {
@@ -163,6 +183,12 @@ a.data-footnote-backref {
     color: rgba(var(--category-dark-color), 0.6);
 }
 
+@media print {
+    a.data-footnote-backref {
+        display: none;
+    }
+}
+
 @media (prefers-color-scheme: light) {
     a,
     a:visited {
@@ -209,6 +235,12 @@ pre {
 
 code {
     font-family: var(--mono-font);
+}
+
+@media print {
+    pre {
+        border: 1px solid var(--fg-light-color);
+    }
 }
 
 ul.contains-task-list {
@@ -280,6 +312,15 @@ ul.contains-task-list
         > input[type="checkbox"]:checked::after {
         border-left: 2px solid var(--bg-light-color);
         border-bottom: 2px solid var(--bg-light-color);
+    }
+}
+
+@media print {
+    ul.contains-task-list
+        > li.task-list-item
+        > input[type="checkbox"]:checked::after {
+        border-left: 2px solid var(--bg-dark-color);
+        border-bottom: 2px solid var(--bg-dark-color);
     }
 }
 

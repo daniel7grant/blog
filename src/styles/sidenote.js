@@ -1,5 +1,7 @@
-function calculateSidenotes() {
-    if (window.matchMedia("(min-width: 1000px)").matches) {
+function calculateSidenotes(
+    isLayoutDesktop = window.matchMedia("(min-width: 1000px)").matches
+) {
+    if (isLayoutDesktop) {
         const mainRect = document
             .querySelectorAll("main > article")[0]
             .getBoundingClientRect();
@@ -30,5 +32,7 @@ function calculateSidenotes() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", calculateSidenotes);
-window.addEventListener("resize", calculateSidenotes);
+document.addEventListener("DOMContentLoaded", () => calculateSidenotes());
+window.addEventListener("resize", () => calculateSidenotes());
+window.addEventListener("beforeprint", () => calculateSidenotes(false));
+window.addEventListener("afterprint", () => calculateSidenotes());
