@@ -6,7 +6,7 @@ import { blogTitle, categories, type LayoutData } from "../types";
 
 type Props = LayoutData;
 
-const { title, pubDate, category: categorySlug } = Astro.props;
+const { title, pubDate, category: categorySlug, isCategoryPage } = Astro.props;
 const renderedDate = pubDate ? format("yyyy-MM-dd", pubDate) : undefined;
 const category = categorySlug ? categories[categorySlug] : undefined;
 ---
@@ -65,7 +65,7 @@ const category = categorySlug ? categories[categorySlug] : undefined;
                 <div>
                     {renderedDate && `Published on ${renderedDate}`}
                     {
-                        category && (
+                        category && !isCategoryPage && (
                             <a href={`/${categorySlug}`} class="badge">
                                 <small>{category.name}</small>
                             </a>
