@@ -2,18 +2,12 @@
 import '../styles/global.css';
 import '../styles/sidenote.css';
 import { format } from 'date-fns/fp';
-import { blogTitle, categories, type Category } from '../types';
+import { blogTitle, categories, type Category, type LayoutData } from '../types';
 
-interface Props {
-    frontmatter: {
-        title: string;
-        pubDate?: string;
-        category?: string;
-    };
-}
+type Props = LayoutData;
 
-const { title, pubDate, category: categorySlug } = Astro.props.frontmatter;
-const renderedDate = pubDate ? format('yyyy-MM-dd', new Date(pubDate)) : undefined;
+const { title, pubDate, category: categorySlug } = Astro.props;
+const renderedDate = pubDate ? format('yyyy-MM-dd', pubDate) : undefined;
 const category = categorySlug ? categories[categorySlug as Category] : undefined;
 ---
 

@@ -1,23 +1,24 @@
 ---
-import type { Post } from '../types';
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 
-const posts = await Astro.glob<Post>('./posts/*.md');
+const posts = await getCollection("posts");
 const sortedPosts = posts.toSorted(
-    (p1, p2) => +new Date(p1.frontmatter.pubDate) - +new Date(p2.frontmatter.pubDate)
+    (p1, p2) =>
+        +new Date(p1.data.pubDate) - +new Date(p2.data.pubDate)
 );
 ---
 
-<Layout frontmatter={{ title: 'Welcome to your mom.' }}>
+<Layout title="Welcome to my blog">
     <main>
         <ul role="list" class="link-card-grid">
             {
                 sortedPosts.map((post) => (
                     <Card
-                        href={post.url ?? '#'}
-                        title={post.frontmatter.title}
-                        body={`Read more about ${post.frontmatter.title}`}
+                        href={`/${post.collection}/${post.slug}`}
+                        title={post.data.title}
+                        body={`Read more about ${post.data.title}`}
                         color="red"
                     />
                 ))
@@ -30,7 +31,10 @@ const sortedPosts = posts.toSorted(
     .instructions {
         margin-bottom: 2rem;
         border: 1px solid rgba(var(--accent-light), 25%);
-        background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
+        background: linear-gradient(
+            rgba(var(--accent-dark), 66%),
+            rgba(var(--accent-dark), 33%)
+        );
         padding: 1.5rem;
         border-radius: 8px;
     }
