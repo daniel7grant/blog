@@ -1,6 +1,8 @@
 import { z } from "astro:content";
 
 export const blogTitle = "grant's blog";
+export const blogDescription = "A blog about webdev, rust and devops";
+export const blogUrl = "https://danielgrants.com";
 
 export const categoryNames = ["webdev", "rust", "devops"] as const;
 

@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import { categories } from "../../types";
+
+const posts = await getCollection("posts");
+---
+
+<Layout title="All posts">
+    <p>Here is the list of all my posts.</p>
+    {
+        posts.map((post) => (
+            <Card
+                title={post.data.title}
+                body={post.data.description}
+                href={`/${post.collection}/${post.slug}`}
+                color={categories[post.data.category].color.dark}
+            />
+        ))
+    }
+</Layout>
