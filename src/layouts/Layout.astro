@@ -2,11 +2,18 @@
 import "../styles/global.css";
 import "../styles/sidenote.css";
 import { format } from "date-fns/fp";
-import { blogTitle, categories, type LayoutData } from "../types";
+import { blogAuthor, blogTitle, categories, type LayoutData } from "../types";
+import { SEO } from "astro-seo";
 
 type Props = LayoutData;
 
-const { title, pubDate, category: categorySlug, isCategoryPage } = Astro.props;
+const {
+    title,
+    description,
+    pubDate,
+    category: categorySlug,
+    isCategoryPage,
+} = Astro.props;
 const renderedDate = pubDate ? format("yyyy-MM-dd", pubDate) : undefined;
 const category = categorySlug ? categories[categorySlug] : undefined;
 ---
@@ -14,10 +21,37 @@ const category = categorySlug ? categories[categorySlug] : undefined;
 <!doctype html>
 <html lang="en">
     <head>
+        <SEO
+            title=`${title} - ${blogTitle}`
+            description={description}
+            charset="UTF-8"
+            openGraph={{
+                basic: {
+                    type: "website",
+                    title: title,
+                    image: "",
+                },
+                article: {
+                    publishedTime: pubDate?.toISOString(),
+                    authors: [blogAuthor],
+                    tags: categorySlug ? [categorySlug] : undefined,
+                },
+            }}
+            twitter={{
+                title,
+                description,
+            }}
+        />
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="RSS Feed"
+            href="/rss.xml"
+        />
         <meta name="generator" content={Astro.generator} />
         <title>{title} - {blogTitle}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
