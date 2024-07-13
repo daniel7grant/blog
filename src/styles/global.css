@@ -227,13 +227,6 @@ input[type="checkbox"] {
     position: absolute;
     top: 0;
     left: 0;
-    /* font: inherit;
-    color: rgba(var(--category-dark-color), 0.6);
-    width: 1.15em;
-    height: 1.15em;
-    border: 0.15em solid rgba(var(--category-dark-color), 0.6);
-    border-radius: 0.15em;
-    transform: translateY(-0.075em); */
 }
 
 ul.contains-task-list > li.task-list-item > input[type="checkbox"]::before {
@@ -248,12 +241,16 @@ ul.contains-task-list > li.task-list-item > input[type="checkbox"]::before {
     height: 0.8rem;
 }
 
-ul.contains-task-list > li.task-list-item > input[type="checkbox"]:checked:before {
+ul.contains-task-list
+    > li.task-list-item
+    > input[type="checkbox"]:checked:before {
     border: 2px solid rgba(var(--category-dark-color), 1);
     background-color: rgba(var(--category-dark-color), 1);
 }
 
-ul.contains-task-list > li.task-list-item > input[type="checkbox"]:checked::after {
+ul.contains-task-list
+    > li.task-list-item
+    > input[type="checkbox"]:checked::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -264,4 +261,38 @@ ul.contains-task-list > li.task-list-item > input[type="checkbox"]:checked::afte
     width: 0.6rem;
     height: 0.2rem;
     transform: rotate(-45deg);
+}
+
+@media (prefers-color-scheme: light) {
+    ul.contains-task-list > li.task-list-item > input[type="checkbox"]::before {
+        border: 2px solid rgba(var(--category-light-color), 0.6);
+    }
+
+    ul.contains-task-list
+        > li.task-list-item
+        > input[type="checkbox"]:checked:before {
+        border: 2px solid rgba(var(--category-light-color), 1);
+        background-color: rgba(var(--category-light-color), 1);
+    }
+
+    ul.contains-task-list
+        > li.task-list-item
+        > input[type="checkbox"]:checked::after {
+        border-left: 2px solid var(--bg-light-color);
+        border-bottom: 2px solid var(--bg-light-color);
+    }
+}
+
+a.skip-to-main {
+    position: absolute;
+    top: -4rem;
+    left: 1rem;
+    background-color: var(--fg-dark-color);
+    color: var(--bg-dark-color);
+    padding: 0.5rem;
+    text-align: center;
+}
+
+a.skip-to-main:focus {
+    top: 1rem;
 }

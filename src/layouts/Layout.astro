@@ -70,6 +70,7 @@ const category = categorySlug ? categories[categorySlug] : undefined;
         />
     </head>
     <body>
+        <a href="#main" class="skip-to-main">Skip to main content</a>
         <header>
             <a href="/" class="header">grant's blog</a>
             <nav>
@@ -89,6 +90,7 @@ const category = categorySlug ? categories[categorySlug] : undefined;
             </nav>
         </header>
         <main
+            id="main"
             style={{
                 "--category-dark-color": category?.color.dark,
                 "--category-light-color": category?.color.light,
