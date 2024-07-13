@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function calculateSidenotes() {
     if (window.matchMedia("(min-width: 1000px)").matches) {
         const mainRect = document
             .querySelectorAll("main > article")[0]
@@ -22,5 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 previousNoteBottom = nodeRect.bottom - mainRect.top;
             }
         }
+    } else {
+        const notes = document.querySelectorAll(".footnotes > ol > li");
+        for (const note of notes) {
+            note.setAttribute("style", ``);
+        }
     }
-});
+}
+
+document.addEventListener("DOMContentLoaded", calculateSidenotes);
+window.addEventListener("resize", calculateSidenotes);

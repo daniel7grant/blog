@@ -11,7 +11,7 @@ category: webdev
 To defeat the Huns[^mulan] [^huns].
 
 [^mulan]: This is a reference to Mulan.
-[^huns]: The Great Wall was actually not built against the Huns, but rather the various Eurasian nomads.
+[^huns]: [The Great Wall](https://en.wikipedia.org/wiki/Great_Wall_of_China) was actually not built against the Huns, but rather the various Eurasian nomads.
 
 ## This is some code shit
 
@@ -35,13 +35,15 @@ function range(n: number) {
 
 Let's say we have some more text to add, I don't know.
 
+> For example a text.
+
 For example a quote that seems kinda important:
 
 > Never gonna give you up.
 >
 > Never gonna let you down.
 >
-> -- _Richard Paul Astley_
+> -- [_Richard Paul Astley_](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ## And we can have a checklist shit
 

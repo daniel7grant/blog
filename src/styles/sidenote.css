@@ -30,7 +30,13 @@
     }
 
     .footnotes > ol > li::marker {
-        color: rgba(var(--category-dark-color), 1);
+        color: rgba(var(--category-dark-color), 0.6);
+    }
+
+    @media (prefers-color-scheme: light) {
+        .footnotes > ol > li::marker {
+            color: rgba(var(--category-light-color), 0.6);
+        }
     }
 
     .footnotes > ol > li p {
