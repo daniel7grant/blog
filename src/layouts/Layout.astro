@@ -1,14 +1,14 @@
 ---
-import '../styles/global.css';
-import '../styles/sidenote.css';
-import { format } from 'date-fns/fp';
-import { blogTitle, categories, type Category, type LayoutData } from '../types';
+import "../styles/global.css";
+import "../styles/sidenote.css";
+import { format } from "date-fns/fp";
+import { blogTitle, categories, type LayoutData } from "../types";
 
 type Props = LayoutData;
 
 const { title, pubDate, category: categorySlug } = Astro.props;
-const renderedDate = pubDate ? format('yyyy-MM-dd', pubDate) : undefined;
-const category = categorySlug ? categories[categorySlug as Category] : undefined;
+const renderedDate = pubDate ? format("yyyy-MM-dd", pubDate) : undefined;
+const category = categorySlug ? categories[categorySlug] : undefined;
 ---
 
 <!doctype html>
@@ -44,8 +44,8 @@ const category = categorySlug ? categories[categorySlug as Category] : undefined
                         <a
                             href={`/${name}`}
                             style={{
-                                '--category-dark-color': category.color.dark,
-                                '--category-light-color': category.color.light,
+                                "--category-dark-color": category.color.dark,
+                                "--category-light-color": category.color.light,
                             }}
                         >
                             {category.name}
@@ -56,8 +56,8 @@ const category = categorySlug ? categories[categorySlug as Category] : undefined
         </header>
         <main
             style={{
-                '--category-dark-color': category?.color.dark,
-                '--category-light-color': category?.color.light,
+                "--category-dark-color": category?.color.dark,
+                "--category-light-color": category?.color.light,
             }}
         >
             <div class="title">
@@ -79,7 +79,7 @@ const category = categorySlug ? categories[categorySlug as Category] : undefined
         </main>
 
         <script>
-            import '../styles/sidenote';
+            import "../styles/sidenote";
         </script>
     </body>
 </html>

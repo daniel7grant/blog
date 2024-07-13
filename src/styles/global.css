@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    scroll-behavior: smooth;       
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -8,10 +8,10 @@
     --bg-dark-color: #13151a;
     --fg-light-color: #333333;
     --fg-dark-color: #e0e0e0;
-    --main-font: 'Poppins', system-ui, sans-serif;
-    --header-font: 'Raleway', system-ui, sans-serif;
-    --mono-font: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-        Bitstream Vera Sans Mono, Courier New, monospace;
+    --main-font: "Poppins", system-ui, sans-serif;
+    --header-font: "Raleway", system-ui, sans-serif;
+    --mono-font: Menlo, Monaco, Lucida Console, Liberation Mono,
+        DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
 html {
@@ -110,7 +110,7 @@ h6 {
 }
 
 :is(h1, h2, h3, h4, h5, h6) a .icon::after {
-    content: '#';
+    content: "#";
     padding: 8px;
 }
 
@@ -170,7 +170,7 @@ pre {
     padding: 1rem;
     border-radius: 0.5rem;
 }
- 
+
 code {
     font-family: var(--mono-font);
 }

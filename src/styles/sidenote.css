@@ -7,7 +7,7 @@
         padding-right: calc(100% - var(--main-width));
     }
 
-    a[href*='user-content-fn'] {
+    a[href*="user-content-fn"] {
         text-decoration: none;
         pointer-events: none;
     }
@@ -24,12 +24,11 @@
         font-size: 90%;
     }
 
-
     .footnotes > ol > li {
         right: 0;
         width: 100%;
     }
-    
+
     .footnotes > ol > li::marker {
         color: rgba(var(--category-dark-color), 1);
     }

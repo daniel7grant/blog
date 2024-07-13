@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import { categories, type CategoryData } from "../types";
+import { categories, type Category, type CategoryData } from "../types";
 
 type Props = {
     category: CategoryData;
@@ -15,7 +15,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }));
 };
 
-const { categoryName } = Astro.params as { categoryName: string };
+const { categoryName } = Astro.params as { categoryName: Category };
 const { category } = Astro.props;
 
 const posts = await getCollection("posts");
@@ -24,7 +24,7 @@ const filteredPosts = posts.filter((post) =>
 );
 ---
 
-<Layout title={category?.name ?? ""}>
+<Layout title={category.name} category={categoryName}>
     {
         filteredPosts.length > 0 ? (
             <ul>

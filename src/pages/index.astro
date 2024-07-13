@@ -5,8 +5,7 @@ import Card from "../components/Card.astro";
 
 const posts = await getCollection("posts");
 const sortedPosts = posts.toSorted(
-    (p1, p2) =>
-        +new Date(p1.data.pubDate) - +new Date(p2.data.pubDate)
+    (p1, p2) => +p1.data.pubDate - +p2.data.pubDate
 );
 ---
 
