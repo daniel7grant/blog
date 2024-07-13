@@ -3,6 +3,7 @@ import { z } from "astro:content";
 export const blogTitle = "grant's blog";
 export const blogDescription = "A blog about webdev, rust and devops";
 export const blogUrl = "https://danielgrants.com";
+export const blogAuthor = "Daniel Grant";
 
 export const categoryNames = ["webdev", "rust", "devops"] as const;
 
@@ -17,17 +18,20 @@ export type CategoryData = {
 export const categories: Record<Category, CategoryData> = {
     webdev: {
         name: "webdev",
-        description: "Posts about the forever-changing landscape of web development, especially JavaScript and TypeScript.",
+        description:
+            "Posts about the forever-changing landscape of web development, especially JavaScript and TypeScript.",
         color: { dark: "0, 216, 255", light: "0, 158, 187" },
     },
     rust: {
         name: "rust",
-        description: "My thoughts on the blazing fast language, that is everybody's favourite.",
+        description:
+            "My thoughts on the blazing fast language, that is everybody's favourite.",
         color: { dark: "244, 102, 35", light: "244, 102, 35" },
     },
     devops: {
         name: "devops",
-        description: "All about deploying stuff to places: Docker and Kubernetes to on-premise or the cloud.",
+        description:
+            "All about deploying stuff to places: Docker and Kubernetes to on-premise or the cloud.",
         color: { dark: "29, 99, 237", light: "29, 99, 237" },
     },
 };
