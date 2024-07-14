@@ -1,62 +1,67 @@
 ---
-interface Props {
-    title: string;
-    body: string;
-    href: string;
-    color: string;
-}
+import type { CollectionEntry } from "astro:content";
+import { categories } from "../types";
+import { format } from "date-fns/fp";
 
-const { href, title, body, color } = Astro.props;
+type Props = {
+    post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+const category = categories[post.data.category];
 ---
 
-<li class="link-card">
-    <a href={href}>
-        <h2>
-            {title}
-            <span>&rarr;</span>
-        </h2>
+<li class="card">
+    <a href={`/${post.collection}/${post.slug}`}>
+        <h4>
+            {post.data.title}
+        </h4>
+        <small>
+            Published on {format("yyyy-MM-dd", post.data.pubDate)}
+            <span class="badge">{post.data.category}</span>
+        </small>
         <p>
-            {body}
+            {post.data.description}
         </p>
     </a>
 </li>
-<style define:vars={{ color }}>
-    .link-card {
+<style
+    define:vars={{
+        "category-dark-color": category.color.dark,
+        "category-light-color": category.color.light,
+    }}
+>
+    .card {
         list-style: none;
-        display: flex;
-        padding: 1px;
-        background-color: #23262d;
-        background-image: none;
-        background-size: 400%;
-        border-radius: 7px;
-        background-position: 100%;
-        transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     }
-    .link-card > a {
+    .card > a {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
         width: 100%;
         text-decoration: none;
-        line-height: 1.4;
-        padding: calc(1.5rem - 1px);
-        border-radius: 8px;
-        color: white;
-        background-color: #23262d;
-        opacity: 0.8;
+        padding: 1.5rem;
+        border: 1px solid rgba(var(--category-dark-color), 0.6);
+        border-radius: 0.5rem;
+        background-color: rgba(var(--category-dark-color), 0.05);
     }
-    h2 {
+    .card > a > * {
+        color: rgb(var(--fg-dark-color));
         margin: 0;
-        font-size: 1.25rem;
-        transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    p {
-        margin-top: 0.5rem;
-        margin-bottom: 0;
+    .card:is(:hover, :focus-within) > a {
+        background-color: rgba(var(--category-dark-color), 0.1);
     }
-    .link-card:is(:hover, :focus-within) {
-        background-position: 0;
-        background-color: var(--color, #ffffff);
-    }
-    .link-card:is(:hover, :focus-within) h2 {
-        color: rgb(var(--accent-light));
+    @media (prefers-color-scheme: light) {
+        .card > a > * {
+            color: rgb(var(--fg-light-color));
+        }
+        .card > a {
+            border: 1px solid rgba(var(--category-light-color), 0.6);
+            background-color: rgba(var(--category-light-color), 0.05);
+        }
+        .card:is(:hover, :focus-within) > a {
+            background-color: rgba(var(--category-light-color), 0.1);
+        }
     }
 </style>

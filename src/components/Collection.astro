@@ -10,14 +10,7 @@ const { posts } = Astro.props;
 <ul>
     {
         posts.length > 0 ? (
-            posts.map((post) => (
-                <Card
-                    href={`/${post.collection}/${post.slug}`}
-                    title={post.data.title}
-                    body={`Read more about ${post.data.title}`}
-                    color="red"
-                />
-            ))
+            posts.map((post) => <Card {post} />)
         ) : (
             <p>There are no posts here yet. Stay tuned!</p>
         )

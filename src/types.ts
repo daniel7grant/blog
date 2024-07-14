@@ -23,7 +23,7 @@ export const categories: Record<Category, CategoryData> = {
         name: "webdev",
         description:
             "Posts about the forever-changing landscape of web development, especially JavaScript and TypeScript.",
-        color: { dark: "0, 216, 255", light: "0, 158, 187" },
+        color: { dark: "0, 216, 255", light: "0, 125, 149" },
     },
     rust: {
         name: "rust",
