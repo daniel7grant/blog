@@ -1,57 +1,84 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import { categories, latestPostCount, favouritePostSlugs } from "../types";
+import Collection from "../components/Collection.astro";
 
 const posts = await getCollection("posts");
-const sortedPosts = posts.toSorted(
-    (p1, p2) => +p1.data.pubDate - +p2.data.pubDate
+const latestPosts = posts
+    .toSorted((p1, p2) => +p2.data.pubDate - +p1.data.pubDate)
+    .slice(0, latestPostCount);
+
+const favouritePosts = favouritePostSlugs.map(
+    (slug) => posts.find((post) => post.slug === slug)!
 );
 ---
 
-<Layout title="Welcome to my blog">
-    <main>
-        <ul role="list" class="link-card-grid">
-            {
-                sortedPosts.map((post) => (
-                    <Card
-                        href={`/${post.collection}/${post.slug}`}
-                        title={post.data.title}
-                        body={`Read more about ${post.data.title}`}
-                        color="red"
-                    />
-                ))
-            }
-        </ul>
-    </main>
+<Layout title="Welcome to my blog" isCategoryPage>
+    <section class="introduction">
+        <img src="/olti.png" alt="" width="200" height="207" />
+        <div class="introduction-description">
+            <p>Hi, my name is Daniel Grant!</p>
+            <p>
+                I've been a web developer and DevOps engineer since 2016. I'm
+                developing open-source projects mostly in TypeScript and Rust.
+            </p>
+            <p>
+                I like to write about
+                <a
+                    href="/webdev"
+                    style={{
+                        "--category-dark-color": categories.webdev.color.dark,
+                        "--category-light-color": categories.webdev.color.light,
+                    }}>web development</a
+                >,
+                <a
+                    href="/rust"
+                    style={{
+                        "--category-dark-color": categories.rust.color.dark,
+                        "--category-light-color": categories.rust.color.light,
+                    }}>Rust</a
+                > and
+                <a
+                    href="/devops"
+                    style={{
+                        "--category-dark-color": categories.devops.color.dark,
+                        "--category-light-color": categories.devops.color.light,
+                    }}>DevOps</a
+                >.
+            </p>
+        </div>
+    </section>
+    <section>
+        <h2>My latest posts</h2>
+        <p>Here's a few of my newest post.</p>
+        <Collection posts={latestPosts} />
+        <p>
+            Subscribe to the
+            <a href="/rss.xml">RSS feed</a> to always be up-to-date.
+        </p>
+    </section>
+    <section>
+        <h2>Favourites</h2>
+        <p>Don't know what to read? Here are some of my faves.</p>
+        <Collection posts={favouritePosts} />
+        <p>Still searching? Check out <a href="/posts">all posts</a>.</p>
+    </section>
 </Layout>
 
 <style>
-    .instructions {
-        margin-bottom: 2rem;
-        border: 1px solid rgba(var(--accent-light), 25%);
-        background: linear-gradient(
-            rgba(var(--accent-dark), 66%),
-            rgba(var(--accent-dark), 33%)
-        );
-        padding: 1.5rem;
-        border-radius: 8px;
+    .introduction {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
     }
-    .instructions code {
-        font-size: 0.8em;
-        font-weight: bold;
-        background: rgba(var(--accent-light), 12%);
-        color: rgb(var(--accent-light));
-        border-radius: 4px;
-        padding: 0.3em 0.4em;
+    .introduction-description {
+        padding: 1rem;
     }
-    .instructions strong {
-        color: rgb(var(--accent-light));
-    }
-    .link-card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-        gap: 2rem;
-        padding: 0;
+
+    @media (max-width: 500px) {
+        .introduction {
+            flex-direction: column;
+        }
     }
 </style>

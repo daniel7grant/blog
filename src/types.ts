@@ -5,6 +5,9 @@ export const blogDescription = "A blog about webdev, rust and devops";
 export const blogUrl = "https://danielgrants.com";
 export const blogAuthor = "Daniel Grant";
 
+export const latestPostCount = 3;
+export const favouritePostSlugs = ["another"];
+
 export const categoryNames = ["webdev", "rust", "devops"] as const;
 
 export type Category = (typeof categoryNames)[number];

@@ -44,8 +44,8 @@ const category = categorySlug ? categories[categorySlug] : undefined;
         />
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link
             rel="alternate"
             type="application/rss+xml"
@@ -88,13 +88,29 @@ const category = categorySlug ? categories[categorySlug] : undefined;
                         </a>
                     ))
                 }
+                <a
+                    href="https://github.com/daniel7grant"
+                    class="github"
+                    style={{
+                        "--category-dark-color": "#ffffff",
+                        "--category-light-color": "#000000",
+                        "margin-left": "1rem",
+                        "font-weight": "700",
+                    }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    github
+                </a>
             </nav>
         </header>
         <main
             id="main"
             style={{
-                "--category-dark-color": category?.color.dark,
-                "--category-light-color": category?.color.light,
+                "--category-dark-color":
+                    category?.color.dark ?? "var(--fg-dark-color)",
+                "--category-light-color":
+                    category?.color.light ?? "var(--fg-light-color)",
             }}
         >
             <div class="title">

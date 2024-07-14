@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Card from "./Card.astro";
+
+type Props = { posts: CollectionEntry<"posts">[] };
+
+const { posts } = Astro.props;
+---
+
+<ul>
+    {
+        posts.length > 0 ? (
+            posts.map((post) => (
+                <Card
+                    href={`/${post.collection}/${post.slug}`}
+                    title={post.data.title}
+                    body={`Read more about ${post.data.title}`}
+                    color="red"
+                />
+            ))
+        ) : (
+            <p>There are no posts here yet. Stay tuned!</p>
+        )
+    }
+</ul>
+
+<style>
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 1rem 0;
+        padding: 0;
+    }
+</style>

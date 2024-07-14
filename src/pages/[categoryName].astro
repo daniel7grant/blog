@@ -3,7 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import { categories, type Category, type CategoryData } from "../types";
-import Card from "../components/Card.astro";
+import Collection from "../components/Collection.astro";
 
 type Props = {
     category: CategoryData;
@@ -25,24 +25,7 @@ const filteredPosts = posts.filter((post) =>
 );
 ---
 
-<Layout
-    title={category.name}
-    category={categoryName}
-    isCategoryPage
->
+<Layout title={category.name} category={categoryName} isCategoryPage>
     <p>{category.description}</p>
-    {
-        filteredPosts.length > 0 ? (
-            filteredPosts.map((post) => (
-                <Card
-                    title={post.data.title}
-                    body={post.data.description}
-                    href={`/${post.collection}/${post.slug}`}
-                    color={category.color.dark}
-                />
-            ))
-        ) : (
-            <p>There are no posts in this category yet. Stay tuned!</p>
-        )
-    }
+    <Collection posts={filteredPosts} />
 </Layout>
