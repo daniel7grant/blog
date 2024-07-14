@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Page not found" isCategoryPage>
+    <section class="introduction">
+        <img src="/404.gif" alt="" width="200" height="207" />
+        <div class="introduction-description">
+            <p>Can't find what you are looking for!</p>
+            <p>
+                See <a href="/posts">all posts</a> or go back to the
+                <a href="/posts">frontpage</a>.
+            </p>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .introduction {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .introduction-description {
+        padding: 1rem;
+    }
+</style>
