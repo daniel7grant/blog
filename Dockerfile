@@ -1,13 +1,11 @@
-FROM node:20-alpine AS builder
+FROM node:20-alpine
+
+RUN apk add ca-certificates openssh-client
+
+COPY --from=danielgrant/gw:0.2.2-alpine /usr/bin/gw /usr/bin/gw
 
 WORKDIR /app
-
 COPY ./ /app
 
-RUN npm ci && \
-    npm run build
-
-FROM nginx:1.27-alpine
-
-COPY --from=builder /app/dist /srv/http
-COPY ./nginx.conf /etc/nginx/nginx.conf
+ENTRYPOINT ["/usr/bin/gw"]
+CMD ["/app", "-vvvv", "-s", "npm ci", "-s", "npm run build"]
