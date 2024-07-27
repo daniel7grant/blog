@@ -44,6 +44,7 @@ header {
 }
 
 .header {
+    text-decoration: none;
     font-family: var(--header-font);
     font-size: 48px;
     font-weight: 300;
@@ -59,7 +60,6 @@ header > nav a,
 header > nav a:hover,
 header > nav a:focus {
     text-decoration: none;
-    border-bottom: none;
 }
 
 main {
@@ -67,7 +67,7 @@ main {
     padding: 1rem;
     width: 1000px;
     max-width: calc(100% - 2rem);
-    line-height: 1.35;
+    line-height: 1.5;
 }
 
 .title {
@@ -88,6 +88,7 @@ main {
     border-radius: 1rem;
     color: rgb(var(--bg-dark-color));
     padding: 0 0.5rem;
+    text-decoration: none;
 }
 
 .badge:focus,
@@ -184,21 +185,18 @@ p {
 
 a,
 a:visited {
-    text-decoration: none;
+    text-decoration: underline;
     color: rgba(var(--category-dark-color), 0.8);
-    border-bottom: 1px solid rgba(var(--category-dark-color), 0.8);
 }
 
 a:focus,
 a:hover {
     color: rgba(var(--category-dark-color), 1);
-    border-bottom: 1px solid rgba(var(--category-dark-color), 1);
 }
 
 sup > a,
 a.data-footnote-backref {
     text-decoration: none;
-    border-bottom: none;
     color: rgba(var(--category-dark-color), 0.6);
 }
 
@@ -212,13 +210,11 @@ a.data-footnote-backref {
     a,
     a:visited {
         color: rgba(var(--category-light-color), 0.8);
-        border-bottom: 1px solid rgba(var(--category-light-color), 0.8);
     }
 
     a:focus,
     a:hover {
         color: rgba(var(--category-light-color), 1);
-        border-bottom: 1px solid rgba(var(--category-light-color), 1);
     }
 
     sup > a,
@@ -262,9 +258,25 @@ code {
     font-family: var(--mono-font);
 }
 
+:not(pre) > code {
+    background-color: rgba(var(--category-dark-color), 0.1);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+@media (prefers-color-scheme: light) {
+    :not(pre) > code {
+        background-color: rgba(var(--category-light-color), 0.1);
+    }
+}
+
 @media print {
     pre {
         border: 1px solid rgb(var(--fg-light-color));
+    }
+
+    :not(pre) > code {
+        border: 1px solid rgba(var(--category-dark-color), 0.6);
     }
 }
 

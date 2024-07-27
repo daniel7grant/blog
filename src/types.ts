@@ -6,7 +6,7 @@ export const blogUrl = "https://danielgrants.com";
 export const blogAuthor = "Daniel Grant";
 
 export const latestPostCount = 3;
-export const favouritePostSlugs = ["another"];
+export const favouritePostSlugs = ["how-i-made-my-blog"];
 
 export const categoryNames = ["webdev", "rust", "devops"] as const;
 
