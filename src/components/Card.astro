@@ -49,6 +49,12 @@ const category = categories[post.data.category];
         color: rgb(var(--fg-dark-color));
         margin: 0;
     }
+    .card > a > small {
+        font-size: 14px;
+    }
+    .card > a > p {
+        font-size: 16px;
+    }
     .card:is(:hover, :focus-within) > a {
         background-color: rgba(var(--category-dark-color), 0.1);
     }
