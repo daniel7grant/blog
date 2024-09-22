@@ -283,6 +283,7 @@ pre {
 
 code {
     font-family: var(--mono-font);
+    font-size: 80%;
 }
 
 :not(pre) > code {

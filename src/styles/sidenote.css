@@ -21,7 +21,7 @@
         width: var(--aside-width);
         right: 1rem;
         top: 0;
-        font-size: 90%;
+        font-size: 80%;
     }
 
     .footnotes > ol > li {
