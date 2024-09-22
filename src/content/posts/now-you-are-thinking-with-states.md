@@ -26,7 +26,9 @@ If you read some articles about JavaScript frameworks, you might have come acros
 UI = F(State)
 ```
 
-This is one of the most important concept to understand in frontend frameworks. This means that we always have some internal state of our application and the UI is automatically synced to it (the f function is our components). For example if we have a calculator component in React, we would setup the inputs as two states and show the result. Changing any of the parameters would automatically recalculate everything, keeping the application always up-to-date.
+This is one of the most important concept to understand in frontend frameworks. This means that we always have some internal state of our application and the UI is automatically synced to it (the F function is our components).
+
+For example if we have a calculator component in React, we would setup the inputs as two states and show the result. Changing any of the parameters would automatically recalculate everything, keeping the application always up-to-date.
 
 ```tsx
 function Calculator() {
