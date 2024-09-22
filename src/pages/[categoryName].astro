@@ -20,9 +20,9 @@ const { categoryName } = Astro.params as { categoryName: Category };
 const { category } = Astro.props;
 
 const posts = await getCollection("posts");
-const filteredPosts = posts.filter((post) =>
-    post.data.category.includes(categoryName)
-);
+const filteredPosts = posts
+    .filter((post) => post.data.category.includes(categoryName))
+    .toSorted((p1, p2) => +p2.data.pubDate - +p1.data.pubDate);
 ---
 
 <Layout title={category.name} category={categoryName} isCategoryPage>

@@ -4,9 +4,12 @@ import Layout from "../../layouts/Layout.astro";
 import Collection from "../../components/Collection.astro";
 
 const posts = await getCollection("posts");
+const sortedPosts = posts.toSorted(
+    (p1, p2) => +p2.data.pubDate - +p1.data.pubDate
+);
 ---
 
 <Layout title="All posts">
     <p>Here is the list of all my posts.</p>
-    <Collection posts={posts} />
+    <Collection posts={sortedPosts} />
 </Layout>
