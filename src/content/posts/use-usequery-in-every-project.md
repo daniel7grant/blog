@@ -1,6 +1,6 @@
 ---
 title: "Use useQuery in every project"
-description: "Data fetching is one of the most complicated parts of React codebases, but there is a simple and declarative way of fetching data: `useQuery`"
+description: "Data fetching is one of the most complicated parts of React codebases, but there is a simple and declarative way of fetching data: useQuery"
 category: webdev
 pubDate: 2024-12-07
 ---
@@ -42,7 +42,7 @@ const App = () => {
 }
 ```
 
-If you would have seen in a review that a junior developer wrote this code, you would probably immediately reject it. First, you should never use an effect to set a default value. And most cases the `setData` is only called once and never again which makes it even worse. This shouldn't even be a state, this is just a constant.
+If you see in a review that a junior developer wrote this code, you would probably immediately reject it. First, you should never use an effect to set a default value. And most cases the `setData` is only called once and never again which makes it even worse. This shouldn't even be a state, this is just a constant.
 
 If you think about it, this is the same case with the async example. The `setData` only ever gets called once, in the setup function, and never again. This is what we really want here: [^rsc]
 
@@ -94,7 +94,7 @@ Let's look at client state first. This is the data concerning about the user's c
 
 ```tsx
 const App = () => {
-    // client state: stored in the client
+    // client state: stored on the client
     const [name, setName] = useState("");
 
     return (
@@ -124,7 +124,7 @@ const App = () => {
 }
 ```
 
-To understand the difference it is best to look at where the data is _updated_. In the client state you just call `setState` and that's all. In the server state however, you are doing an API call, update the state on the server and usually modify the state locally based on the response. With `useQuery`, you don't even have to modify the local state manually, you can just refetch it. And this is even better with server state! When using server state, all you want is the client to be the same as on the server. This will have the additional benefit that if someone else changed the data, it will reflect that as well.
+To understand the difference it is best to look at where the data is _updated_. In the client state you just call `setState` and that's all. In the server state however, you are doing an API call, update the state on the server and usually modify the state locally based on the response. With `useQuery`, you don't even have to modify the local state manually, you can just refetch it. And this is even better! When using server state, all you want is the client to be the same as on the server. This will have the additional benefit that if someone else changed the data, it will reflect that as well.
 
 ```tsx
 const App = () => {
@@ -143,6 +143,7 @@ const App = () => {
     // Refetch the server on submit
     async function onSubmit() {
         await saveOnServer(name);
+        // Don't setName manually... just refetch!
         refetch();
     }
 
@@ -161,6 +162,6 @@ You can refetch the state manually, on page focus, on reconnection to the intern
 
 ## So, what now?
 
-If you haven't already, I recommend you to think about server state and client state while writing your next frontend application. You'd be surprised how many times you don't really want to manage another state, just keep up-to-date with what's on the server. And in these cases make your life simpler and look at [Tanstack Query](https://tanstack.com/query/latest), [SWR](https://swr.vercel.app/), [nanostores query](https://github.com/nanostores/query) or your framework's built-ins like Nuxt's [useFetch](https://nuxt.com/docs/getting-started/data-fetching). [^goodies]
+If you haven't already, I recommend you to think about server state and client state while writing your next frontend application. You'd be surprised how many times you don't really want to manage another state, just keep up-to-date with what's on the server. And in these cases make your life simpler and look at [Tanstack Query](https://tanstack.com/query/latest), [SWR](https://swr.vercel.app/) or your framework's built-ins like Nuxt's [useFetch](https://nuxt.com/docs/getting-started/data-fetching). [^goodies]
 
 [^goodies]: And I haven't even talked about all the goodies you get with these libraries like automatic deduplication (copy paste your `useQuery` calls everywhere and fetch once), infinite scroll/paginated queries and smart retries.
