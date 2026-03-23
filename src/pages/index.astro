@@ -10,7 +10,7 @@ const latestPosts = posts
     .slice(0, latestPostCount);
 
 const favouritePosts = favouritePostSlugs.map(
-    (slug) => posts.find((post) => post.slug === slug)!
+    (slug) => posts.find((post) => post.id === slug)!,
 );
 ---
 

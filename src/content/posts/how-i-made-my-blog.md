@@ -27,31 +27,31 @@ Apart from a Markdown editor, I only had some faint ideas about my blog. I love 
 
 After reading through [Microfeatures I Love in Blogs and Personal Websites](https://danilafe.com/blog/blog_microfeatures/) and the [Hacker News comments](https://news.ycombinator.com/item?id=40774277), this list grew with quite a few elements:
 
--   [sidenotes](#sidenotes): this is the main one, I recently read [Crafting Interpreters](https://craftinginterpreters.com/) and I fell in love with the sidenotes there. [^even]
--   [linkable headings](#linkable-headings): important for accessibility and even more to being able to link to interesting parts of articles.
--   rss feed, sitemap and printing layout: apparently people still use RSS readers and printers, and it is important to maintain as big audience as I can.
--   open graph metadata: I need this for SEO and pretty link sharing.
--   list of all notes: I don't want to put together a search functionality, so it is simpler to have a Ctrl+F-able list of all my posts in chronological order.
--   accessible "skip to content" link: it's just good practice to be able to skip the header links.
+- [sidenotes](#sidenotes): this is the main one, I recently read [Crafting Interpreters](https://craftinginterpreters.com/) and I fell in love with the sidenotes there. [^even]
+- [linkable headings](#linkable-headings): important for accessibility and even more to being able to link to interesting parts of articles.
+- rss feed, sitemap and printing layout: apparently people still use RSS readers and printers, and it is important to maintain as big audience as I can.
+- open graph metadata: I need this for SEO and pretty link sharing.
+- list of all notes: I don't want to put together a search functionality, so it is simpler to have a Ctrl+F-able list of all my posts in chronological order.
+- accessible "skip to content" link: it's just good practice to be able to skip the header links.
 
 [^even]: Even when they take you out from reading a list.
 
 After reading through the comments one mentioned a great article by swyx [The Surprisingly High Table Stakes of Modern Blogs](https://www.swyx.io/the-surprisingly-high-table-stakes-of-modern-blogs), which added some more advanced features (I haven't implemented any of these):
 
--   reading time: I like to see approximately how long this blog post will take.
--   rich media embedding: Twitter (subsequently X) and YouTube embeds.
--   minimal analytics without GDPR banner: I want to see how little people care about what I write. ([umami?](https://umami.is/), [fathom?](https://usefathom.com))
+- reading time: I like to see approximately how long this blog post will take.
+- rich media embedding: Twitter (subsequently X) and YouTube embeds.
+- minimal analytics without GDPR banner: I want to see how little people care about what I write. ([umami?](https://umami.is/), [fathom?](https://usefathom.com))
 
 And finally, if I got stuck (for example what should a front page say?), I looked at other inspiring blogs and websites. Without any specific order:
 
--   https://fasterthanli.me/
--   https://craftinginterpreters.com/
--   https://verdagon.dev/home
--   https://without.boats/
--   https://matklad.github.io/
--   https://overreacted.io/
--   https://www.joshwcomeau.com/
--   https://www.swyx.io/
+- https://fasterthanli.me/
+- https://craftinginterpreters.com/
+- https://verdagon.dev/home
+- https://without.boats/
+- https://matklad.github.io/
+- https://overreacted.io/
+- https://www.joshwcomeau.com/
+- https://www.swyx.io/
 
 ## The framework
 
@@ -184,13 +184,15 @@ Naturally, I decided to rewrite it with my own take. [^nih]
 
 The main features I wanted:
 
--   Use the regular Markdown footnotes, no new syntax
--   Fallback to footnotes on mobile, sidenotes on desktop
--   Be readable without JavaScript
--   No collisions [^collision] [^collision2] [^collision3]
+- Use the regular Markdown footnotes, no new syntax
+- Fallback to footnotes on mobile, sidenotes on desktop
+- Be readable without JavaScript
+- No collisions [^collision] [^collision2] [^collision3]
 
 [^collision]: Collision is when there are multiple sidenotes near each other.
+
 [^collision2]: If one of them is longer, they end up overlapping and it seriously hinders any kind of readability.
+
 [^collision3]: Therefore you need to push down the later ones.
 
 What I put together at the end is a similar method how for example [Crafting Interpreters](https://craftinginterpreters.com/parsing-expressions.html) does it, but instead of inline notes, with footnotes. I take the footnotes block and if it is a desktop, I move it to the side with `position: absolute`, and hide the header.
@@ -222,7 +224,7 @@ const mainRect = document
     .getBoundingClientRect();
 const notes = document.querySelectorAll(".footnotes > ol > li");
 const numbers = Array.from(
-    document.querySelectorAll("a[href*='user-content-fn']")
+    document.querySelectorAll("a[href*='user-content-fn']"),
 );
 let previousNoteBottom = 0;
 for (const note of notes) {
